@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>更新数组时触发视图更新 | MX-问题汇总</title>
+    <meta name="description" content="笔记">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.6b7951d2.css" as="style"><link rel="preload" href="/assets/js/app.c9964c05.js" as="script"><link rel="preload" href="/assets/js/2.57076c19.js" as="script"><link rel="preload" href="/assets/js/10.5b4052df.js" as="script"><link rel="prefetch" href="/assets/js/11.5ae10f50.js"><link rel="prefetch" href="/assets/js/12.7d8c9341.js"><link rel="prefetch" href="/assets/js/3.c0fbe510.js"><link rel="prefetch" href="/assets/js/4.563e8988.js"><link rel="prefetch" href="/assets/js/5.2fc35558.js"><link rel="prefetch" href="/assets/js/6.138d4148.js"><link rel="prefetch" href="/assets/js/7.49fc9895.js"><link rel="prefetch" href="/assets/js/8.0fef9d3e.js"><link rel="prefetch" href="/assets/js/9.da08f2ec.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.6b7951d2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">MX-问题汇总</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vueBasice/shengmingzhouqi.html" class="nav-link">Vue</a></div><div class="nav-item"><a href="/vueElementAdmin/zhutiqiehuan.html" class="nav-link">VueElementAdmin</a></div><div class="nav-item"><a href="/es6/promise.html" class="nav-link">es6</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vueBasice/shengmingzhouqi.html" class="nav-link">Vue</a></div><div class="nav-item"><a href="/vueElementAdmin/zhutiqiehuan.html" class="nav-link">VueElementAdmin</a></div><div class="nav-item"><a href="/es6/promise.html" class="nav-link">es6</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>vue基础问题</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vueBasice/shengmingzhouqi.html" class="sidebar-link">生命周期</a></li><li><a href="/vueBasice/shuzucaozuo.html" class="active sidebar-link">数组操作</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/vueBasice/chuandiduogecanshu.html" class="sidebar-link">elementUi事件传递多个参数</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="更新数组时触发视图更新"><a href="#更新数组时触发视图更新" aria-hidden="true" class="header-anchor">#</a> 更新数组时触发视图更新</h3> <blockquote><p>Vue 包含一组观察数组的变异方法，所以它们也将会触发视图更新</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// 向数组的末尾添加一个或多个元素，并返回新的长度</span>
+<span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// 删除并返回数组的最后一个元素</span>
+<span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// 把数组的第一个元素从其中删除，并返回第一个元素的值</span>
+<span class="token function">unshift</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// 向数组的开头添加一个或更多元素，并返回新的长度</span>
+<span class="token function">splice</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// 向、从数组中添加/删除项目，然后返回被删除的项目</span>
+<span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// 对数组的元素进行排序</span>
+<span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// 用于颠倒数组中元素的顺序</span>
+</code></pre></div><p><strong>Vue 不能检测以下变动的数组：</strong></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 当你利用索引直接设置一个项时，例如：</span>
+vm<span class="token punctuation">.</span>items<span class="token punctuation">[</span>indexOfItem<span class="token punctuation">]</span> <span class="token operator">=</span> newValue
+
+<span class="token comment">// 当你修改数组的长度时，例如：</span>
+vm<span class="token punctuation">.</span>items<span class="token punctuation">.</span>length <span class="token operator">=</span> newLength
+
+</code></pre></div><div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 当你利用索引直接设置一个项时，例如：vm.items[indexOfItem] = newValue</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$<span class="token keyword">set</span><span class="token punctuation">(</span>vm<span class="token punctuation">.</span>items<span class="token punctuation">,</span> indexOfItem<span class="token punctuation">,</span> newValue<span class="token punctuation">)</span>
+
+<span class="token comment">// 当你修改数组的长度时，例如：vm.items.length = newLength</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>items<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>newLength<span class="token punctuation">)</span>
+
+<span class="token comment">/* 有时你想向已有对象上添加一些属性，例如使用 Object.assign() 或 _.extend() 方法来添加属性。
+但是，添加到对象上的新属性不会触发更新。
+在这种情况下可以创建一个新的对象，让它包含原对象的属性和新的属性：*/</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>someObject <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>someObject<span class="token punctuation">,</span> <span class="token punctuation">{</span> a<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/vueBasice/shengmingzhouqi.html" class="prev">
+          生命周期
+        </a></span> <span class="next"><a href="/vueBasice/chuandiduogecanshu.html">
+          elementUi事件传递多个参数
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.c9964c05.js" defer></script><script src="/assets/js/2.57076c19.js" defer></script><script src="/assets/js/10.5b4052df.js" defer></script>
+  </body>
+</html>

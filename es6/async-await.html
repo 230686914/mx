@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Async await | MX-问题汇总</title>
+    <meta name="description" content="笔记">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.6b7951d2.css" as="style"><link rel="preload" href="/assets/js/app.c9964c05.js" as="script"><link rel="preload" href="/assets/js/2.57076c19.js" as="script"><link rel="preload" href="/assets/js/7.49fc9895.js" as="script"><link rel="prefetch" href="/assets/js/10.5b4052df.js"><link rel="prefetch" href="/assets/js/11.5ae10f50.js"><link rel="prefetch" href="/assets/js/12.7d8c9341.js"><link rel="prefetch" href="/assets/js/3.c0fbe510.js"><link rel="prefetch" href="/assets/js/4.563e8988.js"><link rel="prefetch" href="/assets/js/5.2fc35558.js"><link rel="prefetch" href="/assets/js/6.138d4148.js"><link rel="prefetch" href="/assets/js/8.0fef9d3e.js"><link rel="prefetch" href="/assets/js/9.da08f2ec.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.6b7951d2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">MX-问题汇总</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vueBasice/shengmingzhouqi.html" class="nav-link">Vue</a></div><div class="nav-item"><a href="/vueElementAdmin/zhutiqiehuan.html" class="nav-link">VueElementAdmin</a></div><div class="nav-item"><a href="/es6/promise.html" class="nav-link">es6</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vueBasice/shengmingzhouqi.html" class="nav-link">Vue</a></div><div class="nav-item"><a href="/vueElementAdmin/zhutiqiehuan.html" class="nav-link">VueElementAdmin</a></div><div class="nav-item"><a href="/es6/promise.html" class="nav-link">es6</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>es6使用</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/es6/promise.html" class="sidebar-link">Promise</a></li><li><a href="/es6/async-await.html" class="active sidebar-link">Async-await</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="async-await"><a href="#async-await" aria-hidden="true" class="header-anchor">#</a> Async await</h3> <blockquote><p>需求场景：小名去考试，先考语文，在考数学，最后考英语。3科都考完之后，都及格给奖励。</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 第一步考语文</span>
+<span class="token keyword">var</span> promise <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 使用定时器模拟</span>
+  <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> res <span class="token operator">=</span> <span class="token number">60</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>res <span class="token operator">&gt;=</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token function">reject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment">// 第二步考数学</span>
+<span class="token keyword">var</span> promise1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 使用定时器模拟</span>
+  <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> res <span class="token operator">=</span> <span class="token number">70</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>res <span class="token operator">&gt;=</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token function">reject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment">// 第三步考英语</span>
+<span class="token keyword">var</span> promise2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 使用定时器模拟</span>
+  <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> res <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>res <span class="token operator">&gt;=</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token function">reject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 考语文</span>
+promise<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">res</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'语文考试及格'</span><span class="token punctuation">)</span>
+  <span class="token comment">// 考数学</span>
+  promise1<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">res</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'数学考试及格'</span><span class="token punctuation">)</span>
+    <span class="token comment">// 考英语</span>
+    promise2<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">res</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'英语考试及格'</span><span class="token punctuation">)</span>
+      <span class="token operator">...</span>
+         <span class="token operator">...</span>
+            <span class="token operator">...</span>
+               <span class="token operator">...</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'英语考试不及格'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'数学考试不及格'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'语文考试不及格'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p><strong>上述代码写出来，代码很臃肿，会不断的回调嵌套</strong></p> <blockquote><p>基于上述情况，有人提出了 Async await</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 使用 Async await 实现方式</span>
+<span class="token keyword">var</span> promise <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 使用定时器模拟</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> res <span class="token operator">=</span> <span class="token number">60</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>res <span class="token operator">&gt;=</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'语文考试及格'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token function">reject</span><span class="token punctuation">(</span><span class="token string">'语文考试不及格'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">var</span> promise1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 使用定时器模拟</span>
+  <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> res <span class="token operator">=</span> <span class="token number">70</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>res <span class="token operator">&gt;=</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'数学考试及格'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token function">reject</span><span class="token punctuation">(</span><span class="token string">'数学考试不及格'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">var</span> promise2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 使用定时器模拟</span>
+  <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> res <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>res <span class="token operator">&gt;=</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'英语考试及格'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token function">reject</span><span class="token punctuation">(</span><span class="token string">'英语考试不及格'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 先考语文，使用 await 来等待语文的结果</span>
+    <span class="token comment">// await 后面接收的是一个 Promise 对象</span>
+    <span class="token comment">// await promise - 会返回一个值，取决于 Promise 对象里面的 resolve, reject</span>
+
+    <span class="token comment">// 考语文</span>
+    <span class="token keyword">var</span> res <span class="token operator">=</span> <span class="token keyword">await</span> promise<span class="token punctuation">;</span> <span class="token comment">// 输出值为 语文考试及格</span>
+    <span class="token comment">// 考数学</span>
+    <span class="token keyword">var</span> res1 <span class="token operator">=</span> <span class="token keyword">await</span> promise1<span class="token punctuation">;</span> <span class="token comment">// 输出值为 数学考试及格</span>
+    <span class="token comment">// 考英语</span>
+    <span class="token keyword">var</span> res2 <span class="token operator">=</span> <span class="token keyword">await</span> promise2<span class="token punctuation">;</span> <span class="token comment">// 输出值为 英语考试不及格</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><div class="tip custom-block"><p>如果是多个异步嵌套，可以考虑用 Async await 来优化。</p></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/es6/promise.html" class="prev">
+          Promise
+        </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.c9964c05.js" defer></script><script src="/assets/js/2.57076c19.js" defer></script><script src="/assets/js/7.49fc9895.js" defer></script>
+  </body>
+</html>

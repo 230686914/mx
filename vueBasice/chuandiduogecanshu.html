@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>element-ui 组件上提供的事件传递多个参数 | MX-问题汇总</title>
+    <meta name="description" content="笔记">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.6b7951d2.css" as="style"><link rel="preload" href="/assets/js/app.c9964c05.js" as="script"><link rel="preload" href="/assets/js/2.57076c19.js" as="script"><link rel="preload" href="/assets/js/9.da08f2ec.js" as="script"><link rel="prefetch" href="/assets/js/10.5b4052df.js"><link rel="prefetch" href="/assets/js/11.5ae10f50.js"><link rel="prefetch" href="/assets/js/12.7d8c9341.js"><link rel="prefetch" href="/assets/js/3.c0fbe510.js"><link rel="prefetch" href="/assets/js/4.563e8988.js"><link rel="prefetch" href="/assets/js/5.2fc35558.js"><link rel="prefetch" href="/assets/js/6.138d4148.js"><link rel="prefetch" href="/assets/js/7.49fc9895.js"><link rel="prefetch" href="/assets/js/8.0fef9d3e.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.6b7951d2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">MX-问题汇总</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vueBasice/shengmingzhouqi.html" class="nav-link">Vue</a></div><div class="nav-item"><a href="/vueElementAdmin/zhutiqiehuan.html" class="nav-link">VueElementAdmin</a></div><div class="nav-item"><a href="/es6/promise.html" class="nav-link">es6</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vueBasice/shengmingzhouqi.html" class="nav-link">Vue</a></div><div class="nav-item"><a href="/vueElementAdmin/zhutiqiehuan.html" class="nav-link">VueElementAdmin</a></div><div class="nav-item"><a href="/es6/promise.html" class="nav-link">es6</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>vue基础问题</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vueBasice/shengmingzhouqi.html" class="sidebar-link">生命周期</a></li><li><a href="/vueBasice/shuzucaozuo.html" class="sidebar-link">数组操作</a></li><li><a href="/vueBasice/chuandiduogecanshu.html" class="active sidebar-link">elementUi事件传递多个参数</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="element-ui-组件上提供的事件传递多个参数"><a href="#element-ui-组件上提供的事件传递多个参数" aria-hidden="true" class="header-anchor">#</a> element-ui 组件上提供的事件传递多个参数</h3> <blockquote><p>应用场景：表格中有下拉框动态选择数据，下拉框选择完值之后，需要把当前下拉框的值和当前操作的这一行的 row.id 组成一个对象 push 到一个新数组。</p></blockquote> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>tableBox<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-table</span>
+          <span class="token attr-name">:data</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>tableData<span class="token punctuation">&quot;</span></span><span class="token style-attr language-css"><span class="token attr-name">
+          <span class="token attr-name">style</span></span><span class="token punctuation">=&quot;</span><span class="token attr-value"><span class="token property">width</span><span class="token punctuation">:</span> 100%</span><span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-table-column</span> <span class="token attr-name">prop</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>name<span class="token punctuation">&quot;</span></span> <span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>姓名<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-table-column</span>
+            <span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>性别<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">slot-scope</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>scope<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-select</span> 
+                    <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>scope.row.gender<span class="token punctuation">&quot;</span></span> 
+                    <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>请选择性别<span class="token punctuation">&quot;</span></span> 
+                    <span class="token attr-name">@change</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>val =&gt; { changeDataFun(val, scope.row) }<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-option</span>
+                        <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item in scope.row.options<span class="token punctuation">&quot;</span></span>
+                        <span class="token attr-name">:key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item.value<span class="token punctuation">&quot;</span></span>
+                        <span class="token attr-name">:label</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item.label<span class="token punctuation">&quot;</span></span>
+                        <span class="token attr-name">:value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item.value<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>el-option</span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>el-select</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>el-table-column</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>el-table</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">'table'</span><span class="token punctuation">,</span>
+  <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    tableData<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        id<span class="token punctuation">:</span> <span class="token string">'12345'</span><span class="token punctuation">,</span>
+        name<span class="token punctuation">:</span> <span class="token string">'张三'</span><span class="token punctuation">,</span>
+        options<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            value<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+            label<span class="token punctuation">:</span> <span class="token string">'男'</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span>
+            value<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+            label<span class="token punctuation">:</span> <span class="token string">'女'</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        gender<span class="token punctuation">:</span> <span class="token string">''</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        id<span class="token punctuation">:</span> <span class="token string">'67890'</span><span class="token punctuation">,</span>
+        name<span class="token punctuation">:</span> <span class="token string">'李四'</span><span class="token punctuation">,</span>
+        options<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+              value<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+              label<span class="token punctuation">:</span> <span class="token string">'男'</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+              value<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+              label<span class="token punctuation">:</span> <span class="token string">'女'</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        gender<span class="token punctuation">:</span> <span class="token string">''</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    myArr<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token function">changeDataFun</span><span class="token punctuation">(</span><span class="token parameter">value<span class="token punctuation">,</span> row</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> _arr <span class="token operator">=</span> <span class="token punctuation">{</span>
+        value<span class="token punctuation">,</span>
+        row
+      <span class="token punctuation">}</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>myArr<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>_arr<span class="token punctuation">)</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>myArr<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><div class="tip custom-block"><p>解析：</p> <p>由于element-ui select选择器的 change 事件触发方式是选中值发生变化时触发，且只有一个返回参数（目前选中的值）</p> <p>当我们需要传递2个或者多个参数的时候，就需要自己去做处理了</p> <p>根据 element-ui 提供的事件可以看到， change事件接收一个 function，我们平时常用的写法为：@change='selectFun' 在 methods 里面定义 selectFun(val) {}</p> <p>在需要传递多个参数的时候：@change='(val) =&gt; {}'</p> <p>在 change 里面去写一个匿名函数，把select回调参数接收到，此时我们可以在匿名函数里面去定义一个方法 selectFun()</p> <p>参数则为匿名函数上接收到的 change 回调参数 和 你自己需要传递的自定义参数</p> <p>@change='(val) =&gt; { selectFun(val, xxx, xxx, xxx, ...) }'</p></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/vueBasice/shuzucaozuo.html" class="prev">
+          数组操作
+        </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.c9964c05.js" defer></script><script src="/assets/js/2.57076c19.js" defer></script><script src="/assets/js/9.da08f2ec.js" defer></script>
+  </body>
+</html>

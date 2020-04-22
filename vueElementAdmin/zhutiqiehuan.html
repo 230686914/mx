@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>主题切换 | MX-问题汇总</title>
+    <meta name="description" content="笔记">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.6b7951d2.css" as="style"><link rel="preload" href="/assets/js/app.c9964c05.js" as="script"><link rel="preload" href="/assets/js/2.57076c19.js" as="script"><link rel="preload" href="/assets/js/11.5ae10f50.js" as="script"><link rel="prefetch" href="/assets/js/10.5b4052df.js"><link rel="prefetch" href="/assets/js/12.7d8c9341.js"><link rel="prefetch" href="/assets/js/3.c0fbe510.js"><link rel="prefetch" href="/assets/js/4.563e8988.js"><link rel="prefetch" href="/assets/js/5.2fc35558.js"><link rel="prefetch" href="/assets/js/6.138d4148.js"><link rel="prefetch" href="/assets/js/7.49fc9895.js"><link rel="prefetch" href="/assets/js/8.0fef9d3e.js"><link rel="prefetch" href="/assets/js/9.da08f2ec.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.6b7951d2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">MX-问题汇总</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vueBasice/shengmingzhouqi.html" class="nav-link">Vue</a></div><div class="nav-item"><a href="/vueElementAdmin/zhutiqiehuan.html" class="nav-link router-link-exact-active router-link-active">VueElementAdmin</a></div><div class="nav-item"><a href="/es6/promise.html" class="nav-link">es6</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vueBasice/shengmingzhouqi.html" class="nav-link">Vue</a></div><div class="nav-item"><a href="/vueElementAdmin/zhutiqiehuan.html" class="nav-link router-link-exact-active router-link-active">VueElementAdmin</a></div><div class="nav-item"><a href="/es6/promise.html" class="nav-link">es6</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>vue-element-admin问题</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vueElementAdmin/zhutiqiehuan.html" class="active sidebar-link">主题切换</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="主题切换"><a href="#主题切换" aria-hidden="true" class="header-anchor">#</a> 主题切换</h3> <blockquote><p>基于 vue-element-ui 实现项目换肤功能</p></blockquote> <div class="tip custom-block"><p>思路：要设置3套不同的主题 - theme / theme2 / theme3 <br></p> <p>切换不同的主题时在body上添加主题对应的class类 <br></p> <p>所有涉及到主题切换的模块样式都写在 主题对应的 class 类下面</p></div> <div class="language-html extra-class"><pre class="language-html"><code>在 styles 文件下面新建文件夹 - topicSwitch
+
+topicSwitch =&gt; 新建3个文件分别为：theme.scss / theme1.scss / theme2.scss
+
+在 utils 文件夹下面的 index,js 里面写个公共类并导出  用于 主题切换
+
+</code></pre></div><div class="language-scss extra-class"><pre class="language-scss"><code><span class="token comment">// theme.scss</span>
+<span class="token selector">.theme</span><span class="token punctuation">{</span>
+  <span class="token selector">.header</span><span class="token punctuation">{</span>
+    ...
+       ...
+          ...
+  <span class="token punctuation">}</span>
+  <span class="token selector">.sidebar</span><span class="token punctuation">{</span>
+      ...
+         ...
+            ...
+  <span class="token punctuation">}</span>
+  <span class="token selector">.footer</span><span class="token punctuation">{</span>
+      ...
+         ...
+            ...
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-scss extra-class"><pre class="language-scss"><code><span class="token comment">// theme1.scss</span>
+<span class="token selector">.theme1</span><span class="token punctuation">{</span>
+  <span class="token selector">.header</span><span class="token punctuation">{</span>
+    ...
+       ...
+          ...
+  <span class="token punctuation">}</span>
+  <span class="token selector">.sidebar</span><span class="token punctuation">{</span>
+      ...
+         ...
+            ...
+  <span class="token punctuation">}</span>
+  <span class="token selector">.footer</span><span class="token punctuation">{</span>
+      ...
+         ...
+            ...
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-scss extra-class"><pre class="language-scss"><code><span class="token comment">// theme2.scss</span>
+<span class="token selector">.theme2</span><span class="token punctuation">{</span>
+  <span class="token selector">.header</span><span class="token punctuation">{</span>
+    ...
+       ...
+          ...
+  <span class="token punctuation">}</span>
+  <span class="token selector">.sidebar</span><span class="token punctuation">{</span>
+      ...
+         ...
+            ...
+  <span class="token punctuation">}</span>
+  <span class="token selector">.footer</span><span class="token punctuation">{</span>
+      ...
+         ...
+            ...
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// utils - index.js</span>
+<span class="token comment">/**
+ * 设置主题
+ */</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">setTheme</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>className <span class="token operator">=</span> name
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">import</span> <span class="token punctuation">{</span> setTheme <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/utils'</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 参数为 对应的 scss文件里面的class类</span>
+    <span class="token function">setTheme</span><span class="token punctuation">(</span><span class="token string">'theme'</span><span class="token punctuation">)</span>
+    <span class="token comment">// setTheme('theme1')</span>
+    <span class="token comment">// setTheme('theme2')</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.c9964c05.js" defer></script><script src="/assets/js/2.57076c19.js" defer></script><script src="/assets/js/11.5ae10f50.js" defer></script>
+  </body>
+</html>
